@@ -4,7 +4,7 @@ import React, {ReactNode} from 'react'
 const AuthLayout = ({children}: {children: ReactNode}) => {
     return (
         // Return any children pages trying to render
-        <div>{children}</div>
+        <div className={'auth-layout'}>{children}</div>
     )
 }
 export default AuthLayout
