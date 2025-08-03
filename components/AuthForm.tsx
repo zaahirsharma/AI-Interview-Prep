@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 
 import { Button } from "@/components/ui/button"
-import { Form } from "@/components/ui/form"
+import {Form, FormField} from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import Image from "next/image";
 import Link from "next/link";
@@ -65,7 +65,15 @@ const AuthForm = ({type}: {type: FormType}) => {
                     <form onSubmit={form.handleSubmit(onSubmit)}
                           className="w-full space-y-6 mt-4 form">
                         {/*Ask for user's name, only display on sign-up*/}
-                        {!isSignIn && <p>Name</p>}
+                        {!isSignIn && (
+                            <FormField
+                                control={form.control}
+                                name="name"
+                                label="Name"
+                                placeholder="Your Name"
+                                type="text"
+                            />
+                        )}
                         {/*Ask for user's email, display on both forms*/}
                         <p>Email</p>
                         {/*Ask for user's password, display on both forms*/}
