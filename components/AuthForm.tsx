@@ -1,11 +1,12 @@
-"use client"
+"use client";
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
-import { Button } from "@/components/ui/button"
-import {Form, FormField} from "@/components/ui/form"
+import { Button } from "@/components/ui/button";
+import {Form} from "@/components/ui/form"
+import FormField from "./FormField";
 import { Input } from "@/components/ui/input"
 import Image from "next/image";
 import Link from "next/link";
