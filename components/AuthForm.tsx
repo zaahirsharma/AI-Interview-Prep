@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input"
 import Image from "next/image";
 import Link from "next/link";
 import {toast} from "sonner";
+import {useRouter} from "next/navigation";
 
 // Make a dynamic form schema, changes on sign-in and sign-up
 const authFormSchema = (type: FormType) => {
@@ -22,6 +23,8 @@ const authFormSchema = (type: FormType) => {
 }
 
 const AuthForm = ({type}: {type: FormType}) => {
+    const router = useRouter();
+
     // Set formSchema to authFormSchema that accepts the type (could be sign-in or sign-up)
     const formSchema = authFormSchema(type)
 
@@ -39,9 +42,11 @@ const AuthForm = ({type}: {type: FormType}) => {
     function onSubmit(values: z.infer<typeof formSchema>) {
         try{
             if (type === "sign-up") {
-                console.log("SIGN-UP", values);
+                toast.success("Account created successfully. Please sign in.");
+                router.push('/sign-in');
             } else {
-                console.log("SIGN-IN", values);
+                toast.success("Signed in successfully.");
+                router.push('/');
             }
         } catch (error) {
             console.log(error);
@@ -71,14 +76,26 @@ const AuthForm = ({type}: {type: FormType}) => {
                                 control={form.control}
                                 name="name"
                                 label="Name"
-                                placeholder="Your Name"
+                                placeholder="Your Full Name"
                                 type="text"
                             />
                         )}
                         {/*Ask for user's email, display on both forms*/}
-                        <p>Email</p>
+                        <FormField
+                            control={form.control}
+                            name="email"
+                            label="Email"
+                            placeholder="Email Address"
+                            type="email"
+                        />
                         {/*Ask for user's password, display on both forms*/}
-                        <p>Password</p>
+                        <FormField
+                            control={form.control}
+                            name="password"
+                            label="Password"
+                            placeholder="Enter Your Password"
+                            type="password"
+                        />
 
 
                         <Button className="btn" type="submit">{isSignIn ? 'Sign In' : 'Create Account'}</Button>
