@@ -1,9 +1,9 @@
-import React from 'react';
 import dayjs from 'dayjs';
 import Image from 'next/image';
 import {getRandomInterviewCover} from "@/lib/utils";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
+import DisplayTechIcons from "@/components/DisplayTechIcons";
 
 const InterviewCard = ({interviewId, userId, role, type, techstack, createdAt } : InterviewCardProps) => {
     // Feedback for each card
@@ -15,7 +15,7 @@ const InterviewCard = ({interviewId, userId, role, type, techstack, createdAt } 
 
 
     return (
-        <div className={"card-border w-[360] max-sm:w-full min-h-96"}>
+        <div className={"card-border w-[360px] max-sm:w-full min-h-96"}>
             <div className={"card-interview"}>
                 <div>
                     <div className={"absolute top-0 right-0 w-fit px-4 py-2 rounded-bl-lg bg-light-600"}>
@@ -24,7 +24,7 @@ const InterviewCard = ({interviewId, userId, role, type, techstack, createdAt } 
 
                     <Image src={getRandomInterviewCover()} alt={"cover-image"} width={90} height={90} className="rounded-full object-fit size-[90px]" />
 
-                    <h3 className={"mt-5 capitalize"}> {role} interview</h3>
+                    <h3 className={"mt-5 capitalize"}> {role} Interview</h3>
 
                     <div className={"flex flex-row gap-5 mt-3"}>
                         <div className={"flex flex-row gap-2"}>
@@ -43,15 +43,15 @@ const InterviewCard = ({interviewId, userId, role, type, techstack, createdAt } 
                     </p>
                 </div>
 
-                    <div className={"flex flex-row justify-center"}>
-                        <p>Tech Icons</p>
-                    </div>
+                    <div className={"flex flex-row justify-between"}>
+                        <DisplayTechIcons techStack={techstack} />
 
-                    <Button className={"btn-primary"}>
-                        <Link href={feedback? `/interview/${interviewId}/feedback` : `/interview/${interviewId}`}>
-                            {feedback? 'Check Feedback' : 'View'}
-                        </Link>
-                    </Button>
+                        <Button className={"btn-primary"}>
+                            <Link href={feedback? `/interview/${interviewId}/feedback` : `/interview/${interviewId}`}>
+                                {feedback? 'Check Feedback' : 'View Interview'}
+                            </Link>
+                        </Button>
+                    </div>
             </div>
         </div>
     )
